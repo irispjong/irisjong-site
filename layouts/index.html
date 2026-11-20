@@ -1,0 +1,13 @@
+{{ define "main" }}
+<div class="gallery">
+  {{ $images := .Resources.ByType "image" }}
+  {{ range $images }}
+  <figure class="gallery-item">
+    <img src="{{ .RelPermalink }}" alt="{{ .Title }}" loading="lazy">
+  </figure>
+  {{ end }}
+  {{ if eq (len $images) 0 }}
+  <p class="empty-note">Add illustration images to <code>content/_index.md</code>'s page bundle to populate this gallery — see README.</p>
+  {{ end }}
+</div>
+{{ end }}

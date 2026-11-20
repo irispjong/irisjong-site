@@ -1,0 +1,18 @@
+{{ define "main" }}
+<article class="reader">
+  <h1>{{ .Title }}</h1>
+  {{ $pages := .Resources.ByType "image" }}
+  {{ if gt (len $pages) 0 }}
+  <div class="reader-pages">
+    {{ range $i, $p := $pages }}
+    <figure class="reader-page">
+      <img src="{{ $p.RelPermalink }}" alt="{{ $.Title }} — page {{ add $i 1 }}" loading="lazy">
+    </figure>
+    {{ end }}
+  </div>
+  <p class="page-count">{{ len $pages }} pages</p>
+  {{ else }}
+  {{ .Content }}
+  {{ end }}
+</article>
+{{ end }}

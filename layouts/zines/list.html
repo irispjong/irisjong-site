@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="section-intro">
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="section-note">{{ . }}</div>{{ end }}
+</div>
+<div class="series-grid">
+  {{ range .Pages.ByTitle }}
+  <a class="series-card" href="{{ .RelPermalink }}">
+    {{ $cover := .Resources.ByType "image" }}
+    {{ with $cover | first 1 }}
+      {{ range . }}<img src="{{ .RelPermalink }}" alt="" loading="lazy">{{ end }}
+    {{ else }}
+      <span class="no-cover">{{ .Title }}</span>
+    {{ end }}
+    <span class="series-title">{{ .Title }}</span>
+  </a>
+  {{ end }}
+</div>
+{{ end }}

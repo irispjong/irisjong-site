@@ -1,0 +1,42 @@
+baseURL = "https://irisjong.com/"
+languageCode = "en-us"
+title = "Iris Jong"
+theme = ""
+enableRobotsTXT = true
+
+[params]
+  tagline = "Illustrator & writer based in Oakland, CA"
+  email = "iris.p.jong@gmail.com"
+  instagram = "http://instagram.com/ipjong"
+  essaysURL = "https://medium.com/@ipjong"
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[[menu.main]]
+  name = "Illustration"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Zines"
+  url = "/zines/"
+  weight = 2
+
+[[menu.main]]
+  name = "Comics"
+  url = "/comics/"
+  weight = 3
+
+[[menu.main]]
+  name = "Essays"
+  url = "https://medium.com/@ipjong"
+  weight = 4
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 5
+
+[markup.goldmark.renderer]
+  unsafe = true

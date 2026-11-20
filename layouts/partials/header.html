@@ -1,0 +1,8 @@
+<header class="site-header">
+  <a class="wordmark" href="{{ "/" | relURL }}">Iris Jong</a>
+  <nav class="site-nav">
+    {{ range .Site.Menus.main }}
+    <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="is-current"{{ end }}>{{ .Name }}</a>{{ if not (eq . (index $.Site.Menus.main (sub (len $.Site.Menus.main) 1))) }}<span class="sep">/</span>{{ end }}
+    {{ end }}
+  </nav>
+</header>
