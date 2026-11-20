@@ -1,7 +1,6 @@
 baseURL = "https://irisjong.com/"
 languageCode = "en-us"
 title = "Iris Jong"
-theme = ""
 enableRobotsTXT = true
 
 [params]
