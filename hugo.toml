@@ -5,37 +5,36 @@ enableRobotsTXT = true
 
 [params]
   tagline = "Illustrator & writer based in Oakland, CA"
-  email = "iris[dot]p[dot]jong[at]gmail.com"
-  instagram = "http://instagram.com/ipjong"
+  email = "iris.p.jong@gmail.com"
+  instagram = "https://www.instagram.com/a_nirizgbi/"
   essaysURL = "https://medium.com/@ipjong"
 
 [outputs]
   home = ["HTML", "RSS"]
 
 [[menu.main]]
-  name = "Illustration"
+  identifier = "zines"
+  name = "Zines"
   url = "/"
   weight = 1
 
 [[menu.main]]
-  name = "Zines"
-  url = "/zines/"
+  identifier = "comics"
+  name = "Comics"
+  url = "/comics/"
   weight = 2
 
 [[menu.main]]
-  name = "Comics"
-  url = "/comics/"
+  identifier = "gallery"
+  name = "Illustration"
+  url = "/illustration/"
   weight = 3
 
 [[menu.main]]
+  identifier = "essays"
   name = "Essays"
   url = "https://medium.com/@ipjong"
   weight = 4
-
-[[menu.main]]
-  name = "Blog"
-  url = "/blog/"
-  weight = 5
 
 [markup.goldmark.renderer]
   unsafe = true

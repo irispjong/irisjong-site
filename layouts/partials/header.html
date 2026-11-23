@@ -1,8 +1,8 @@
+{{ $current := .Section }}
+{{ if .IsHome }}{{ $current = "zines" }}{{ end }}
 <header class="site-header">
   <a class="wordmark" href="{{ "/" | relURL }}">Iris Jong</a>
   <nav class="site-nav">
-    {{ range .Site.Menus.main }}
-    <a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="is-current"{{ end }}>{{ .Name }}</a>{{ if not (eq . (index $.Site.Menus.main (sub (len $.Site.Menus.main) 1))) }}<span class="sep">/</span>{{ end }}
-    {{ end }}
+    {{ range $i, $item := .Site.Menus.main }}{{ if $i }}<span class="sep">/</span>{{ end }}<a href="{{ $item.URL }}"{{ if eq $item.Identifier $current }} class="is-current"{{ end }}>{{ $item.Name }}</a>{{ end }}
   </nav>
 </header>

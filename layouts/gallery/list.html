@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{ $view := .Params.view | default "grid" }}
+{{/* The illustration images live next to content/_index.md */}}
+{{ $images := site.Home.Resources.ByType "image" }}
+<div class="gallery gallery--{{ $view }}" id="gallery">
+  {{ range $images }}
+    {{ $thumb := . }}
+    {{ $full := . }}
+    {{/* Shrink big originals at build time; GIF/SVG are left as uploaded. */}}
+    {{ if not (in (slice "gif" "svg+xml") .MediaType.SubType) }}
+      {{ $full = .Fit "2200x2200 q85" }}
+      {{ $thumb = .Fit "1000x1000 q82" }}
+      {{ if eq $view "list" }}{{ $thumb = $full }}{{ end }}
+    {{ end }}
+  <figure class="gallery-item" style="--r: {{ printf "%.4f" (div (float $thumb.Width) (float $thumb.Height)) }}">
+    <a class="gallery-link" href="{{ $full.RelPermalink }}">
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ .Title }}" loading="lazy">
+    </a>
+  </figure>
+  {{ end }}
+  {{ if eq (len $images) 0 }}
+  <p class="empty-note">Add illustration images to the <code>content</code> folder (next to <code>_index.md</code>) to populate this gallery.</p>
+  {{ end }}
+</div>
+
+<dialog class="lightbox" id="lightbox" aria-label="Image viewer">
+  <button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous image">&#8249;</button>
+  <img class="lb-img" alt="">
+  <button class="lb-btn lb-next" type="button" aria-label="Next image">&#8250;</button>
+</dialog>
+<script src="{{ "js/gallery.js" | relURL }}" defer></script>
+{{ end }}
