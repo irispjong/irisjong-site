@@ -50,8 +50,11 @@ a:hover { border-color: var(--accent); color: var(--accent); }
 .site-main { max-width: var(--max); margin: 0 auto; padding: 2rem 1.25rem 4rem; }
 
 /* Homepage gallery */
-.gallery { --h: 9rem; }
-@media (min-width: 640px) { .gallery { --h: 14rem; } }
+/* Minimum row height: no row of images is shorter than about a third of the page
+   width (and never shorter than 12rem). Images that are too wide to share a row
+   simply take a whole row. To make images bigger overall, change the 3 below to a
+   smaller number (2.5, say); for smaller images, use a larger one. */
+.gallery { --h: clamp(12rem, calc((min(100vw, 68rem) - 3.6rem - 0.5rem) / 3), 26rem); }
 
 /* grid view: justified rows, left to right, no empty space around images */
 .gallery--grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -154,7 +157,9 @@ a:hover { border-color: var(--accent); color: var(--accent); }
   gap: 2px;
   background: var(--line);
 }
-.reader-page { margin: 0; max-width: 42rem; width: 100%; background: var(--paper); }
+/* Pages are shown halfway between the old width (42rem) and the full width of the strip,
+   so some margin always remains. For wider pages, replace 42rem with a larger value. */
+.reader-page { margin: 0; max-width: calc((100% + 42rem) / 2); width: 100%; background: var(--paper); }
 .reader-page img { display: block; width: 100%; height: auto; }
 .page-count { margin-top: 1rem; color: var(--muted); font-size: 0.8rem; }
 
